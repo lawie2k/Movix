@@ -9,7 +9,7 @@ import {
   FlatList,
 } from "react-native";
 import SearchBar from "@/components/SearchBar";
-import MovieCard from "@/components/MovieCard";
+import MovieCard from "@/components/movieCard";
 import { useRouter } from "expo-router";
 import { fetchMovies } from "@/services/api";
 import useFetch from "@/services/usefetch";
@@ -22,6 +22,7 @@ export default function Index() {
     loading: moviesLoading,
     error: moviesError,
   } = useFetch(() => fetchMovies({ query: "" }));
+
   return (
     <View className="flex-1 bg-black">
       <Image source={images.bg} className="absolute w-full z-0" />
@@ -36,7 +37,11 @@ export default function Index() {
         <View className="flex-1 mt-5">
           <SearchBar
             onPress={() => Router.push("./search")}
-            placeholder={"Search Movies"}
+            placeHolder={"Search Movies"}
+            value={""}
+            onChangeText={function (text: string): void {
+              throw new Error("Function not implemented.");
+            }}
           />
 
           <>
